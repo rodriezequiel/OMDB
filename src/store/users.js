@@ -2,7 +2,7 @@ import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getUsers = createAsyncThunk('getUsers', () =>{
-   return axios.get(`${process.env.API_URL}/api/users`)
+   return axios.get(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/users`)
     .then(res => res.data)
     .then(users => users)
 })
