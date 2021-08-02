@@ -43,7 +43,7 @@ export default function Movie({ match }) {
   if (!Pending) {
     return (
       <div className="row d-flex justify-content-evenly pt-5 mx-5">
-        <div className="col-3 pb-0 mb0">
+        <div className="col-lg-3 col-xs-6 pb-0 mb0">
           <img
             src={Movie.Poster && Movie.Poster.replace("300", "800")}
             className="rounded shadow-lg p-2 mb-5 bg-body rounded hoverGrow"
@@ -51,7 +51,7 @@ export default function Movie({ match }) {
             style={{ height: "65vh", width: "auto", maxWidth: "100%" }}
           />
         </div>
-        <div className="col-9 pb-0 mb0 me-0">
+        <div className="col-lg-9 col-sm-6 pb-0 mb0 me-0">
           <div className="row d-flex justify-content-between">
             <div className="col-9 pb-0 mb-0 mt-1">
               <h1 className="fs-2" style={{ display: "inline" }}>
