@@ -48,7 +48,7 @@ export default function Movie({ match }) {
             src={Movie.Poster && Movie.Poster.replace("300", "800")}
             className="rounded shadow-lg p-2 mb-5 bg-body rounded hoverGrow"
             alt="Movie poster"
-            style={{ height: "65vh", width: "auto", maxWidth: "100%" }}
+            style={{ height: "55vh", width: "auto", maxWidth: "100%" }}
           />
         </div>
         <div className="col-lg-9 col-sm-6 pb-0 mb0 me-0">
