@@ -6,7 +6,7 @@ import { seed } from "../utils/seed";
 export const setFilms = createAsyncThunk("getFilms", (query) => {
   let axiosArr = []
   for(let i=1; i<=5; i++){
-    axiosArr.push(axios.get(`https://www.omdbapi.com/?apikey=20dac387&s=${query}&page=${i}`))
+    axiosArr.push(axios.get(`http://www.omdbapi.com/?apikey=20dac387&s=${query}&page=${i}`))
   }
   return Promise.all(axiosArr)
     .then((resul) => resul.map(e => e.data))
@@ -21,7 +21,7 @@ export const setFilms = createAsyncThunk("getFilms", (query) => {
 export const setSingleFilm = createAsyncThunk("setSingleFilm", (match) => {
   return axios
     .get(
-      `https://www.omdbapi.com/?apikey=20dac387&i=${match.params.id}&plot=full`
+      `http://www.omdbapi.com/?apikey=20dac387&i=${match.params.id}&plot=full`
     )
     .then((resul) => resul.data)
     .then((film) => film);

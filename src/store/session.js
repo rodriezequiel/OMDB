@@ -4,7 +4,7 @@ import { message } from "antd";
 
 export const registerUser = createAsyncThunk("registerUser", user => {
   return axios
-    .post(`https://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/register`, user)
+    .post(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/register`, user)
     .then(res => {
       if (typeof res.data !== "string") {
         message.success("Succesfully registered");
@@ -18,7 +18,7 @@ export const registerUser = createAsyncThunk("registerUser", user => {
 
 export const loginUser = createAsyncThunk("loginUser", user => {
   return axios
-    .post(`https://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/login`, user)
+    .post(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/login`, user)
     .then(res => res.data)
     .then(data => {
       message.success(`Welcome Back ${data.name}!`);
@@ -27,7 +27,7 @@ export const loginUser = createAsyncThunk("loginUser", user => {
 });
 
 export const fetchUser = createAsyncThunk('fetchUser', () =>{
-  return axios.get(`https://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/me`)
+  return axios.get(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/me`)
     .then(res => res.data)
     .then(data => {
       message.success(`Welcome Back ${data.name}!`);
@@ -37,14 +37,14 @@ export const fetchUser = createAsyncThunk('fetchUser', () =>{
 })
 
 export const logoutUser = createAsyncThunk("logoutUser", () => {
-  return axios.post(`https://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/logout`).then(res => console.log(res));
+  return axios.post(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/auth/logout`).then(res => console.log(res));
 });
 
 export const addFav = createAsyncThunk("addFav", (fav, ThunkApi) => {
   const { user } = ThunkApi.getState();
   if (!user.favs.some(element => element.imdbID === fav.movie.imdbID)) {
     return axios
-      .put(`https://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/favourites`, fav)
+      .put(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/favourites`, fav)
       .then(res => res.data)
       .then(favs => favs)
       .catch(err => message.error("Parece que hubo un problema al agregar a favoritos", 5));
@@ -53,14 +53,14 @@ export const addFav = createAsyncThunk("addFav", (fav, ThunkApi) => {
 
 export const getFav = createAsyncThunk("getFav", id => {
   return axios
-    .get(`https://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/favourites?userID=${id}`)
+    .get(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/favourites?userID=${id}`)
     .then(res => res.data)
     .then(favs => favs)
     .catch(err => message.error("No se pudieron recuperar tus favoritos", 5));
 });
 
 export const deleteFav = createAsyncThunk('deleteFav', (query) =>{
-  return axios.delete(`https://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/favourites?imdbID=${query.imdbID}&userId=${query.userId}`)
+  return axios.delete(`http://ec2-18-228-121-134.sa-east-1.compute.amazonaws.com:3000/api/favourites?imdbID=${query.imdbID}&userId=${query.userId}`)
     .then(res=> res.data)
     .then(favs => favs)
     .catch(err => message.error("No se pudo borrar de tus favoritos", 5));
